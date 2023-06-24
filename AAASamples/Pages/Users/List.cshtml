@@ -1,0 +1,31 @@
+﻿@page
+@model AAASamples.Pages.Users.ListModel
+@{
+}
+<table class="table table-striped table-bordered">
+    <tr>
+        <td>Id</td>
+        <td>UserName</td>
+        <td>Email</td>
+    </tr>
+    @if (Model.Users.Count() < 1)
+    {
+        <tr>
+            <td colspan="3">
+                Three is no user in database
+            </td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model.Users)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.UserName</td>
+                <td>@item.Email</td>
+            </tr>
+        }
+    }
+</table>
+<a class="btn btn-success" asp-page="Create">Create</a>
