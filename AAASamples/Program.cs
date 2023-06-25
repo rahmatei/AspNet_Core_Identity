@@ -14,7 +14,9 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(c =>
     /*c.Password.RequiredLength = 10;
     c.Password.RequiredUniqueChars = 5;
     c.Password.RequireNonAlphanumeric = true;*/
-}).AddEntityFrameworkStores<AAADbContext>().AddPasswordValidator<BlackListPasswordValidator<IdentityUser>>();
+    c.User.AllowedUserNameCharacters = "qwertyuiopasdfghjklzxcvbnm";
+    c.User.RequireUniqueEmail = true;
+}).AddEntityFrameworkStores<AAADbContext>().AddPasswordValidator<BlackListPasswordValidator<IdentityUser>>().AddUserValidator<CustomUserValidator>();
 
 //UsernameInPasswordValidator
 
