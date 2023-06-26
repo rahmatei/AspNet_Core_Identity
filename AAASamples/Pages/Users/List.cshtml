@@ -7,11 +7,12 @@
         <td>Id</td>
         <td>UserName</td>
         <td>Email</td>
+        <td>Action</td>
     </tr>
     @if (Model.Users.Count() < 1)
     {
         <tr>
-            <td colspan="3">
+            <td colspan="4">
                 Three is no user in database
             </td>
         </tr>
@@ -24,6 +25,12 @@
                 <td>@item.Id</td>
                 <td>@item.UserName</td>
                 <td>@item.Email</td>
+                <td><a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a>
+                    <form method="post">
+                        <input type="hidden" name="id" value="@item.Id"/>
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                    </td>
             </tr>
         }
     }

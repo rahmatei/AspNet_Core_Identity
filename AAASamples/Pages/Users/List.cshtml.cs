@@ -19,5 +19,14 @@ namespace AAASamples.Pages.Users
         {
             Users = _userManager.Users.ToList();
         }
+        public async Task<IActionResult> OnPostAsync(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                await _userManager.DeleteAsync(user);
+            }
+            return RedirectToPage();
+        }
     }
 }
