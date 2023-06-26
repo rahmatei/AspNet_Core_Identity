@@ -60,5 +60,38 @@ namespace AAASamples.Controllers
             }
             return RedirectToAction("list");
         }
+
+
+        public async Task<IActionResult> Edit (string Id)
+        {
+            var role = await _roleManager.FindByIdAsync(Id);
+            var RoleEdit = new EditRoleViewModel() { Id = role.Id, Name = role.Name };
+            return View(RoleEdit);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditRoleViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _roleManager.FindByIdAsync(model.Id);
+                if (result != null)
+                {
+                    result.Name = model.Name;
+                    var ResultUpdate = await _roleManager.UpdateAsync(result);
+                    if (ResultUpdate.Succeeded)
+                    {
+                        return RedirectToAction("list");
+                    }
+                    foreach (var item in ResultUpdate.Errors)
+                    {
+                        ModelState.AddModelError("", item.Description);
+                    }
+                }
+
+            }
+            return RedirectToAction("list");
+        }
+
     }
 }
