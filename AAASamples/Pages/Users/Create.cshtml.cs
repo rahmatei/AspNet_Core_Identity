@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -24,6 +25,7 @@ namespace AAASamples.Pages.Users
         [EmailAddress]
         public string Email { get; set; }
 
+        [Authorize]
         public void OnGet()
         {
         }
