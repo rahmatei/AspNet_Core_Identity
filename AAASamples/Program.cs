@@ -25,6 +25,8 @@ var app = builder.Build();
 app.UseDeveloperExceptionPage();
 app.UseStaticFiles();
 app.MapRazorPages();
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapDefaultControllerRoute();
 
 app.Run();
